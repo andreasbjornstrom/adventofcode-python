@@ -14,4 +14,4 @@ sample = '''1721
 
 def test_run() -> None:
   # not yet implemented!
-  assert run(sample) == (1721, 299)
+  assert run(sample) == (514579, 241861950)
