@@ -1,2 +1,4 @@
 .USER_SESSION_ID
 /adventofcode/inputs/
+.idea
+__pycache__
