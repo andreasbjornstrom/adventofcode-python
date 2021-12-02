@@ -6,17 +6,19 @@ from adventofcode.types import Solution
 
 
 def solution_1(data):
-    for value in data.splitlines():
-        for compare_to in data.splitlines():
+    split_data = data.splitlines()
+    for value in split_data:
+        for compare_to in split_data:
             if int(value) + int(compare_to) == 2020:
                 print(f"{value} {compare_to}")
                 return int(value) * int(compare_to)
 
 
 def solution_2(data):
-    for value_1 in data.splitlines():
-        for value_2 in data.splitlines():
-            for value_3 in data.splitlines():
+    split_data = data.splitlines()
+    for value_1 in split_data:
+        for value_2 in split_data:
+            for value_3 in split_data:
                 if int(value_1) + int(value_2) + int(value_3) == 2020:
                     print(f"{value_1} {value_2} {value_3}")
                     return int(value_1) * int(value_2) * int(value_3)
