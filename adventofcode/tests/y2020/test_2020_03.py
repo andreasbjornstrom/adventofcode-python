@@ -4,6 +4,18 @@ Run tests from project root with `PYTHONPATH=$(pwd) py.test`.
 '''
 from adventofcode.solutions.y2020.d03 import run
 
+data = """..##.......
+#...#...#..
+.#....#..#.
+..#.#...#.#
+.#...##..#.
+..#.##.....
+.#.#.#....#
+.#........#
+#.##...#...
+#...##....#
+.#..#...#.#"""
+
+
 def test_run() -> None:
-  # not yet implemented!
-  assert run('') == (None, None)
+    assert run(data) == (7, 336)
