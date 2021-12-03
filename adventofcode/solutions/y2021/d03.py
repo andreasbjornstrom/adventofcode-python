@@ -39,27 +39,23 @@ def part2(data):
 
 def find_rating(rows, default_bit=0):
     patter_matcher = ""
+
     for column in range(0, len(rows[0])):
-        rows_left = 0
+        rows_left = []
         sum_of_column = 0
-        the_one = ""
         for row in rows:
             if not row.startswith(patter_matcher):
                 continue
-            rows_left += 1
             sum_of_column += int(row[column])
-            the_one = row
+            rows_left.append(row)
 
-        # Always search until we only have 1 row matching
-        if rows_left == 1:
-            return the_one
+        if len(rows_left) == 1:
+            return rows_left[0]
 
-        if (rows_left / 2) <= sum_of_column:
+        if (len(rows_left) / 2) <= sum_of_column:
             patter_matcher += str(default_bit)
         else:
             patter_matcher += str(int(not default_bit))
-
-#        print(f"Found: {rows_left} {sum_of_ones}, rows: {len(rows[0])}")
     return patter_matcher
 
 
