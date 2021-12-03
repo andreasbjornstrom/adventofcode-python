@@ -1,6 +1,6 @@
-# Advent of Code solutions
-
-This project holds my Python solutions + utilities for **[Advent of Code](https://adventofcode.com/)** puzzles over the years.
+# Advent of Code setup and solutions
+forked from jzimbel/adventofcode-python to get a nice default setup for advent of code hacking.
+i'm new to python so this was an awesome way of getting started.
 
 ## Run it
 
@@ -37,4 +37,4 @@ PYTHONPATH=$(pwd) py.test path/to/test.py
 
 ## Copy it
 
-If you like the setup I've got here, feel free to use it yourself. Or let me know if it's garbage! This is my first time making a proper Python project from scratch, so I'm sure it's not perfect. ¯\\\_(ツ)\_/¯
+Do it!, but please give credit to jzimbel/adventofcode-python
