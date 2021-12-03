@@ -4,6 +4,64 @@ Run it with the command `python -m adventofcode run_solution -y 2021 3` from the
 '''
 from adventofcode.types import Solution
 
+
+def part1(data):
+    rows = data.splitlines()
+    gamma_rate = ""
+    epsilon_rate = ""
+    for column in range(0, len(rows[0])):
+        count = 0
+        sum = 0
+        for row in rows:
+            count += 1
+            sum += int(row[column])
+
+        if (count / 2) < sum:
+            gamma_rate += "1"
+            epsilon_rate += "0"
+        else:
+            gamma_rate += "0"
+            epsilon_rate += "1"
+        print(f"Found: {count} {sum}, rows: {len(rows[0])}")
+
+    return int(gamma_rate, 2) * int(epsilon_rate, 2)
+
+
+def part2(data):
+    rows = data.splitlines()
+    oxygen_rating = find_rating(rows, default_bit=1)
+    co2_rating = find_rating(rows, default_bit=0)
+
+    print(f"Ratings:: {oxygen_rating} {co2_rating}")
+
+    return int(oxygen_rating, 2) * int(co2_rating, 2)
+
+
+def find_rating(rows, default_bit=0):
+    patter_matcher = ""
+    for column in range(0, len(rows[0])):
+        rows_left = 0
+        sum_of_column = 0
+        the_one = ""
+        for row in rows:
+            if not row.startswith(patter_matcher):
+                continue
+            rows_left += 1
+            sum_of_column += int(row[column])
+            the_one = row
+
+        # Always search until we only have 1 row matching
+        if rows_left == 1:
+            return the_one
+
+        if (rows_left / 2) <= sum_of_column:
+            patter_matcher += str(default_bit)
+        else:
+            patter_matcher += str(int(not default_bit))
+
+#        print(f"Found: {rows_left} {sum_of_ones}, rows: {len(rows[0])}")
+    return patter_matcher
+
+
 def run(data: str) -> Solution:
-  # not yet implemented!
-  return (None, None)
+    return part1(data), part2(data)
