@@ -17,10 +17,10 @@ data = """0,9 -> 5,9
 
 
 def test_run() -> None:
-    assert get_hits_with_diagonal([(0, 8), (8, 0)]) == [(0, 8), (1, 7), (2, 6), (3, 5), (4, 4), (5, 3), (6, 2), (7,1), (8,0)]
-    assert get_hits_with_diagonal([(9, 7), (7, 9)]) == [(7, 9), (8, 8), (9, 7)]
-    assert get_hits_with_diagonal([(7, 9), (9, 7)]) == [(7, 9), (8, 8), (9, 7)]
-    assert get_hits_with_diagonal([(1, 1), (3, 3)]) == [(1, 1), (2, 2), (3, 3)]
+    assert get_hits_with_diagonal([(0, 8), (8, 0)], True) == [(0, 8), (1, 7), (2, 6), (3, 5), (4, 4), (5, 3), (6, 2), (7,1), (8,0)]
+    assert get_hits_with_diagonal([(9, 7), (7, 9)], True) == [(7, 9), (8, 8), (9, 7)]
+    assert get_hits_with_diagonal([(7, 9), (9, 7)], True) == [(7, 9), (8, 8), (9, 7)]
+    assert get_hits_with_diagonal([(1, 1), (3, 3)], True) == [(1, 1), (2, 2), (3, 3)]
     assert run(data) == (5, 12)
 
 
