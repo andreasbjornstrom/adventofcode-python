@@ -22,55 +22,60 @@ def get_match(board, sliding_winning_number):
     return None
 
 
-def part2(data, break_when_number_of_wins=0):
-    sum_of_unmarked, current_number = 0, 0
+def solution(data, break_on_first_win=False):
     rows = data.splitlines()
-    drawn_numbers = rows[0].split(",")
+    drawn_numbers = [int(item) for item in rows.pop(0).split(",")]
+    boards = create_boards(rows)
+
+    sliding_winning_number = []
+    boards_with_win = set()
+    unmarked, current_number = 0, 0
+    for drawn_number in drawn_numbers:
+        current_number = drawn_number
+        sliding_winning_number.append(current_number)
+        unmarked, winning_board = calculate_winners(boards, break_on_first_win,
+                                                    sliding_winning_number, boards_with_win)
+        if winning_board is not None:
+            print(f"..")
+            break
+    print(f"{unmarked} {current_number}")
+    result = current_number, unmarked
+    current_number, sum_of_unmarked = result
+    return sum_of_unmarked * current_number
+
+
+def calculate_winners(boards, break_on_first_win, sliding_winning_number, boards_with_win):
+    for i, board in enumerate(boards):
+        winning_row = get_match(board, sliding_winning_number)
+        if winning_row is not None:
+            flatten_board = [row for sublist in board for row in sublist]
+            only_unmarked = set(flatten_board) - set(sliding_winning_number)
+            sum_of_unmarked = reduce(lambda a, b: a + b, only_unmarked)
+            boards_with_win.add(i)
+            if break_on_first_win or len(boards) == len(boards_with_win):
+                print(f"And we are done")
+                return sum_of_unmarked, board
+    return 0, None
+
+
+def create_boards(rows):
     boards = []
-
     board = []
-    row_counter = 0
-    for i, row in enumerate(rows):
-        if i == 0 or not row:
-            continue
+    row_counter = 1
 
-        board.append(row.split())
-        row_counter += 1
+    for i, row in enumerate(rows):
+        if not row:
+            continue
+        board.append([int(number) for number in row.split()])
         if row_counter == 5:
             boards.append(board[:])
             row_counter = 0
             print(f"len of boards: {len(boards)}")
             board.clear()
-    if not break_when_number_of_wins:
-        break_when_number_of_wins = len(boards)
-
-    sliding_winning_number = []
-    boards_with_win = set()
-    for drawn_number in drawn_numbers:
-        sliding_winning_number.append(drawn_number)
-        #  print(f"{sliding_winning_number}")
-        winning_row = None
-        for i, board in enumerate(boards):
-            winning_row = get_match(board, sliding_winning_number)
-            if winning_row is not None:
-                all_in_board = [row for sublist in board for row in sublist]
-                all_in_board_as_int = [int(col) for col in all_in_board]
-                drawn_as_int = [int(col) for col in sliding_winning_number]
-                only_unmarked = set(all_in_board_as_int) - set(drawn_as_int)
-                sum_of_unmarked = reduce(lambda a, b: a + b, only_unmarked)
-                current_number = int(drawn_number)
-                boards_with_win.add(i)
-                if len(boards_with_win) == break_when_number_of_wins:
-                    print(f"finally.. {winning_row}")
-                    break
-                winning_row = None
-        if winning_row is not None:
-            print(f"..")
-            break
-    print(f"{sum_of_unmarked} {current_number}")
-    return sum_of_unmarked * current_number
+        row_counter += 1
+    return boards
 
 
 def run(data: str) -> Solution:
     # not yet implemented!
-    return part2(data, 1), part2(data)
+    return solution(data, break_on_first_win=True), solution(data)
