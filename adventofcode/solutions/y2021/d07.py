@@ -23,15 +23,13 @@ def part1(data):
 
 
 def triangular_number(n):
-    return sum(range(n + 1))
+    return (n * (n + 1)) // 2
 
 
 def part2(data):
     positions = [int(pos) for pos in data.split(",")]
 
-    print(
-        *
-        f"positions: {positions}, min: {min(positions)}, {max(positions)}")
+    print(f"positions: {positions}, min: {min(positions)}, {max(positions)}")
 
     fuel_cost = None
     for target in range(min(positions), max(positions)):
