@@ -8,8 +8,6 @@ from adventofcode.types import Solution
 
 
 class LanternFish:
-    timer_til_fork: int
-
     def __init__(self, timer_til_fork):
         self.timer_til_fork = timer_til_fork
 

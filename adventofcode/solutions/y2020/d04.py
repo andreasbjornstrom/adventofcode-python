@@ -8,16 +8,17 @@ from adventofcode.types import Solution
 
 
 class Passport:
-    byr: str = 0  # (Birth Year)
-    iyr: str = 0  # (Issue Year)
-    eyr: str = 0  # (Expiration Year)
-    hgt: str = ""  # (Height)
-    hcl: str = ""  # (Hair Color)
-    ecl: str = ""  # (Eye Color)
-    pid: str = ""  # (Passport ID)
-    cid: str = ""  # (Country ID)
 
     def __init__(self, passport_as_string) -> None:
+        self.byr = 0  # (Birth Year)
+        self.iyr = 0  # (Issue Year)
+        self.eyr = 0  # (Expiration Year)
+        self.hgt = ""  # (Height)
+        self.hcl = ""  # (Hair Color)
+        self.ecl = ""  # (Eye Color)
+        self.pid = ""  # (Passport ID)
+        self.cid = ""  # (Country ID)
+
         for key_value in passport_as_string.split():
             key, value = key_value.split(":")
             # print(f"key: {key}, value: {value}")
