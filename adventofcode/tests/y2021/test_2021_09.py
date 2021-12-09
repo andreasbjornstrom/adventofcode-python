@@ -6,4 +6,13 @@ from adventofcode.solutions.y2021.d09 import run
 
 def test_run() -> None:
   # not yet implemented!
-  assert run('') == (None, None)
+  assert run(
+      """2199943210
+3987894921
+9856789892
+8767896789
+9899965678""") == (15, 1134)
+
+
+if __name__ == '__main__':
+    test_run()
