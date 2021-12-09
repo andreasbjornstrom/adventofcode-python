@@ -41,27 +41,39 @@ def find_basin(point, board, visited):
     x = point[0]
     y = point[1]
     digit = int(board[y][x])
-    print(f"looking for {point}, got digit; {digit}")
+    print(f"at {point}, with digit; {digit}")
     visited.add(point)
 
-    if y > 0 and 9 > int(board[y - 1][x]) > digit:
+    if y > 0 and \
+            9 > int(board[y - 1][x]) > digit:
         find_basin((x, y - 1), board, visited)
-    if x > 0 and 9 > int(board[y][x - 1]) > digit:
+
+    if x > 0 and \
+            9 > int(board[y][x - 1]) > digit:
         find_basin((x - 1, y), board, visited)
-    if len(board) > (y + 1) and 9 > int(board[y + 1][x]) > digit:
+
+    if len(board) > (y + 1) and \
+            9 > int(board[y + 1][x]) > digit:
         find_basin((x, y + 1), board, visited)
-    if len(board[y]) > (x + 1) and 9 > int(board[y][x + 1]) > digit:
+
+    if len(board[y]) > (x + 1) and \
+            9 > int(board[y][x + 1]) > digit:
         find_basin((x + 1, y), board, visited)
 
     return visited
+
+
+def part2(board, points):
+    print(f"lowest points: {points}")
+    basins = [len(find_basin(point, board, set())) for point in points]
+    basins.sort(reverse=True)
+    return reduce((lambda x, y: x * y), basins[:3])
 
 
 def run(data: str) -> Solution:
     rows = [row for row in data.splitlines()]
     board = [[char for char in row] for row in rows]
     points = find_low_points(board)
-    print(f"lowest points: {points}")
-    basins = [len(find_basin(point, board, set())) for point in points]
-    basins.sort(reverse=True)
     part1 = sum([int(board[point[1]][point[0]]) for point in points]) + len(points)
-    return part1, reduce((lambda x, y: x * y), basins[:3])
+
+    return part1, part2(board, points)
