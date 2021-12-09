@@ -7,10 +7,6 @@ from functools import reduce
 from adventofcode.types import Solution
 
 
-def do_stuff(row):
-    return [char for char in row]
-
-
 def find_low_points(board):
     lowest_points = []
     for y, row in enumerate(board):
