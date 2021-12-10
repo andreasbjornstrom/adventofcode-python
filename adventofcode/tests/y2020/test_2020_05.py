@@ -6,4 +6,6 @@ from adventofcode.solutions.y2020.d05 import run
 
 def test_run() -> None:
   # not yet implemented!
-  assert run('') == (None, None)
+  data = '''FBFBBFFRL
+FFFBBBFRRR'''
+  assert run(data) == (357, 356)
