@@ -6,4 +6,10 @@ from adventofcode.solutions.y2021.d12 import run
 
 def test_run() -> None:
   # not yet implemented!
-  assert run('') == (None, None)
+  assert run('''start-A
+start-b
+A-c
+A-b
+b-d
+end-A
+end-b''') == (10, None)
