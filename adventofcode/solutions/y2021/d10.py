@@ -5,7 +5,6 @@ Run it with the command `python -m adventofcode run_solution -y 2021 10` from th
 from collections import Counter
 
 
-# point_scale=[('(', 3)]
 from adventofcode.types import Solution
 
 
