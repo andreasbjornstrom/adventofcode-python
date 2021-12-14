@@ -12,4 +12,4 @@ A-c
 A-b
 b-d
 end-A
-end-b''') == (10, None)
+end-b''') == (10, 36)
