@@ -7,7 +7,7 @@ import numpy as np
 from adventofcode.types import Solution
 
 
-def part1(data, part1=False):
+def part1(data, exit_on_first_fold=False):
     rows = [row for row in data.splitlines() if row and 'fold' not in row]
     board = np.zeros(
         (max([int(row.split(",")[1]) for row in rows]) + 1,
@@ -24,7 +24,7 @@ def part1(data, part1=False):
             print(base, "\n", reversed, "\n")
             board = base + reversed
             print(board)
-            if part1:
+            if exit_on_first_fold:
                 return board
             continue
         if 'fold along y=' in row:
@@ -36,7 +36,7 @@ def part1(data, part1=False):
             print(base, "\n", reversed, "\n", fold)
             board = base + reversed
             print(board)
-            if part1:
+            if exit_on_first_fold:
                 return board
             continue
         y, x = [int(c) for c in row.split(",")]
@@ -45,4 +45,4 @@ def part1(data, part1=False):
 
 
 def run(data: str) -> Solution:
-    return np.count_nonzero(part1(data, part1=True)), part1(data, part1=False)
+    return np.count_nonzero(part1(data, exit_on_first_fold=True)), part1(data, exit_on_first_fold=False)

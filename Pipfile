@@ -5,10 +5,11 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+numpy = "*"
 
 [packages]
 pytest = "*"
 requests = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3"
