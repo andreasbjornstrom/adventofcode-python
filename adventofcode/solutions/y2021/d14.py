@@ -17,42 +17,33 @@ def count_chars(rules, template, steps):
     for i, char in enumerate(template):
         if i == 0:
             continue
-        if template[i - 1] + char in pairs:
-            pairs[template[i - 1] + char] += 1
-        else:
-            pairs[template[i - 1] + char] = 1
-
-
-    print(rules)
+        create_or_update(pairs, template[i - 1] + char, 1)
 
     for _ in range(steps):
         new_pairs = {}
         for pair, current_count in pairs.items():
             p1, p2 = rules[pair]
 
-            if p1 in new_pairs:
-                new_pairs[p1] += current_count
-            else:
-                new_pairs[p1] = current_count
-
-            if p2 in new_pairs:
-                new_pairs[p2] += current_count
-            else:
-                new_pairs[p2] = current_count
+            create_or_update(new_pairs, p1, current_count)
+            create_or_update(new_pairs, p2, current_count)
         pairs = new_pairs
     #        print(pairs)
 
     chars = {}
     for pair in pairs:
         for c in pair:
-            if c in chars:
-                chars[c] += pairs[pair]
-            else:
-                chars[c] = pairs[pair]
+            create_or_update(chars, c, pairs[pair])
     chars[first_char] += 1
     chars[last_char] += 1
     print(chars)
     return (max(chars.values()) - min(chars.values())) / 2
+
+
+def create_or_update(new_dict, pair, count):
+    if pair in new_dict:
+        new_dict[pair] += count
+    else:
+        new_dict[pair] = count
 
 
 def run(data: str) -> Solution:
