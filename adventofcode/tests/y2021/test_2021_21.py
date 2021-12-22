@@ -9,4 +9,4 @@ def test_run() -> None:
     data = """Player 1 starting position: 4
 Player 2 starting position: 8"""
 
-    assert run(data) == (739785, None)
+    assert run(data) == (739785, 444356092776315)
