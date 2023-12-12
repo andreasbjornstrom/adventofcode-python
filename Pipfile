@@ -9,7 +9,9 @@ numpy = "*"
 
 [packages]
 pytest = "*"
+numpy = "*"
 requests = "*"
 
+pylint = "*"
 [requires]
 python_version = "3.11"
