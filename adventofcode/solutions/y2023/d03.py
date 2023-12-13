@@ -15,7 +15,7 @@ dirs = [(-1, -1), (0, -1), (1, -1),
         (-1, 1), (0, 1), (1, 1)]
 
 
-def _part2(board: [[]]) -> int:
+def part2(board: [[]]) -> int:
     current_number = ""
     star_matches_counter = 0
     coordinates_for_star = "star"
