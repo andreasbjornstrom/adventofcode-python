@@ -41,4 +41,4 @@ humidity-to-location map:
 
 def test_run() -> None:
     # not yet implemented!
-    assert run(data) == (35, None)
+    assert run(data) == (35, 46)
